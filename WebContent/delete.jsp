@@ -6,13 +6,13 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+
 	GuestbookDao dao = new GuestbookDao();
 	List<GuestbookVo> guestBook = dao.getList();
+	
 	int no = Integer.parseInt(request.getParameter("no"));
 	String password = request.getParameter("password");
-
 	GuestbookVo gvo = new GuestbookVo();
-
 	for (GuestbookVo vo : guestBook) {
 		if (vo.getNo() == no) {
 			gvo = vo;

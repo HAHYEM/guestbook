@@ -27,7 +27,7 @@ public class GuestbookDao {
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
 			// 3. SQL문 준비 / 바인딩 / 실행
-			String query = "SELECT no, last_name, first_name, email, TO_CHAR(reg_date, 'YYYY-MM-DD') regDate " + 
+			String query = "SELECT no, name, password, content, TO_CHAR(reg_date, 'YYYY-MM-DD') regDate " + 
 						  " FROM guestbook " + 
 						  " ORDER BY no asc";
 			pstmt = conn.prepareStatement(query);
@@ -120,7 +120,7 @@ public class GuestbookDao {
 		}
 	}
 
-	public void delete(int no1) {
+	public void delete(int no) {
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -136,7 +136,7 @@ public class GuestbookDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = "DELETE FROM guestbook WHERE no = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, no1);
+			pstmt.setInt(1, no);
 
 			int count = pstmt.executeUpdate();
 
